@@ -1,0 +1,32 @@
+{
+  "name": "kancha-bot",
+  "version": "1.0.0",
+  "description": "The Nepali Discord Bot",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Thunderk3g/Kancha-Bot.git"
+  },
+  "keywords": [
+    "Discord",
+    "Node"
+  ],
+  "author": "Thunderk3g",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Thunderk3g/Kancha-Bot/issues"
+  },
+  "homepage": "https://github.com/Thunderk3g/Kancha-Bot#readme",
+  "dependencies": {
+    "@discordjs/opus": "^0.5.3",
+    "discord.js": "^12.5.3",
+    "ffmpeg": "^0.0.4",
+    "ffmpeg-static": "^4.4.1",
+    "fluent-ffmpeg": "^2.1.2",
+    "nodemon": "^2.0.15",
+    "ytdl-core": "^4.10.1"
+  }
+}
