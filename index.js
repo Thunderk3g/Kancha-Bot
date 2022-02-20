@@ -1,13 +1,14 @@
 const Discord = require("discord.js");
-const { prefix, token } = require("./config.json");
+const { prefix, token ,key } = require("./config.json");
 const ytdl = require("ytdl-core");
 
 const client = new Discord.Client();
+var search = require('youtube-search');
 
 const queue = new Map();
 
 client.once("ready", () => {
-  console.log("Ready!");
+  console.log("Connected to the Discord Channel!");
 });
 
 client.once("reconnecting", () => {
@@ -17,19 +18,20 @@ client.once("reconnecting", () => {
 client.once("disconnect", () => {
   console.log("Disconnect!");
 });
-client.on('interactionCreate', async interaction => {
-  if (!interaction.isCommand()) return;
+var opts = {
+  maxResults: 10,
+  key: key
+};
 
-  if (interaction.commandName === 'ping') {
-    await interaction.reply('Pong!');
-  }
-});
+//Music Bot Listens to the command//
+
 client.on("message", async message => {
   if (message.author.bot) return;
   if (!message.content.startsWith(prefix)) return;
 
   const serverQueue = queue.get(message.guild.id);
 
+//Checks for Prefix and Executes the relevant command
   if (message.content.startsWith(`${prefix}play`)) {
     execute(message, serverQueue);
     return;
@@ -39,14 +41,26 @@ client.on("message", async message => {
   } else if (message.content.startsWith(`${prefix}stop`)) {
     stop(message, serverQueue);
     return;
-  } else {
+  } 
+  else if (message.content.startsWith(`${prefix}murtichor`)) {
+    message.channel.send("Jay Shakya lai khojeko ho?");
+
+  }
+  else if (message.content.startsWith(`${prefix}haddi`)) {
+    message.channel.send("Jay Shakya lai khojeko ho?");
+  }
+
+  else {
     message.channel.send("You need to enter a valid command!");
   }
 });
 
-async function execute(message, serverQueue) {
-  const args = message.content.split(" ");
 
+
+ function execute(message, serverQueue) {
+  var args = message.content.split(' ').toString().replace('!play,','').replace(/,/g, ' ');
+  
+  
   const voiceChannel = message.member.voice.channel;
   if (!voiceChannel)
     return message.channel.send(
@@ -59,8 +73,12 @@ async function execute(message, serverQueue) {
     );
   }
 
-  const songInfo = await ytdl.getInfo(args[1]);
-  const song = {
+  search(args, opts, async function(err, results) {
+    if(err) return console.log(err);
+    var id = results[0].link
+    console.log(results);
+    const songInfo = await ytdl.getInfo(id);
+    const song = {
         title: songInfo.videoDetails.title,
         url: songInfo.videoDetails.video_url,
    };
@@ -92,6 +110,8 @@ async function execute(message, serverQueue) {
     serverQueue.songs.push(song);
     return message.channel.send(`${song.title} has been added to the queue!`);
   }
+  });
+  
 }
 
 function skip(message, serverQueue) {
