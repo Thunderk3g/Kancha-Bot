@@ -1,9 +1,9 @@
 const Discord = require("discord.js");
-const { prefix, token ,key } = require("./config.json");
+const { prefix, token, key } = require("./config.json");
 const ytdl = require("ytdl-core");
 
 const client = new Discord.Client();
-var search = require('youtube-search');
+var search = require("youtube-search");
 
 const queue = new Map();
 
@@ -19,21 +19,21 @@ client.once("disconnect", () => {
   console.log("Disconnect!");
 });
 var opts = {
-  maxResults: 10,
-  key: key
+  maxResults: 3,
+  key: key,
 };
-
+var index = Number;
 //Music Bot Listens to the command//
 
-client.on("message", async message => {
+client.on("message", async (message) => {
   if (message.author.bot) return;
   if (!message.content.startsWith(prefix)) return;
 
   const serverQueue = queue.get(message.guild.id);
 
-//Checks for Prefix and Executes the relevant command
+  //Checks for Prefix and Executes the relevant command
   if (message.content.startsWith(`${prefix}play`)) {
-    execute(message, serverQueue);
+    await execute(message, serverQueue);
     return;
   } else if (message.content.startsWith(`${prefix}skip`)) {
     skip(message, serverQueue);
@@ -41,26 +41,22 @@ client.on("message", async message => {
   } else if (message.content.startsWith(`${prefix}stop`)) {
     stop(message, serverQueue);
     return;
-  } 
-  else if (message.content.startsWith(`${prefix}murtichor`)) {
+  } else if (message.content.startsWith(`${prefix}murtichor`)) {
     message.channel.send("Jay Shakya lai khojeko ho?");
-
-  }
-  else if (message.content.startsWith(`${prefix}haddi`)) {
-    message.channel.send("Jay Shakya lai khojeko ho?");
-  }
-
-  else {
+  } else if (message.content.startsWith(`${prefix}haddi`)) {
+    message.channel.send("Prassidha lai khojeko ho?");
+  } else {
     message.channel.send("You need to enter a valid command!");
   }
 });
 
+function execute(message, serverQueue) {
+  var args = message.content
+    .split(" ")
+    .toString()
+    .replace("!play,", "")
+    .replace(/,/g, " ");
 
-
- function execute(message, serverQueue) {
-  var args = message.content.split(' ').toString().replace('!play,','').replace(/,/g, ' ');
-  
-  
   const voiceChannel = message.member.voice.channel;
   if (!voiceChannel)
     return message.channel.send(
@@ -73,45 +69,59 @@ client.on("message", async message => {
     );
   }
 
-  search(args, opts, async function(err, results) {
-    if(err) return console.log(err);
-    var id = results[0].link
-    console.log(results);
-    const songInfo = await ytdl.getInfo(id);
-    const song = {
-        title: songInfo.videoDetails.title,
-        url: songInfo.videoDetails.video_url,
-   };
+  search(args, opts, async function (err, results) {
+    if (err) return console.log(err);
 
-  if (!serverQueue) {
-    const queueContruct = {
-      textChannel: message.channel,
-      voiceChannel: voiceChannel,
-      connection: null,
-      songs: [],
-      volume: 5,
-      playing: true
-    };
-
-    queue.set(message.guild.id, queueContruct);
-
-    queueContruct.songs.push(song);
-
-    try {
-      var connection = await voiceChannel.join();
-      queueContruct.connection = connection;
-      play(message.guild, queueContruct.songs[0]);
-    } catch (err) {
-      console.log(err);
-      queue.delete(message.guild.id);
-      return message.channel.send(err);
+    message.channel.send("Choose the song you want with ! on the start :");
+    for (var i = 0; i < results.length; i++) {
+      message.channel.send(i + 1 + ") " + results[i].title);
+      console.log(results[i].title);
     }
-  } else {
-    serverQueue.songs.push(song);
-    return message.channel.send(`${song.title} has been added to the queue!`);
-  }
+    client.on("message", async (message) => {
+      if (message.author.bot) return;
+      else {
+        var parsed = message.content.toString()
+        console.log(parsed);
+        var id = results[parsed-1].link;
+        const songInfo = await ytdl.getInfo(id);
+        const song = {
+          title: songInfo.videoDetails.title,
+          url: songInfo.videoDetails.video_url,
+        };
+
+        if (!serverQueue) {
+          const queueContruct = {
+            textChannel: message.channel,
+            voiceChannel: voiceChannel,
+            connection: null,
+            songs: [],
+            volume: 5,
+            playing: true,
+          };
+
+          queue.set(message.guild.id, queueContruct);
+
+          queueContruct.songs.push(song);
+
+          try {
+            var connection = await voiceChannel.join();
+            queueContruct.connection = connection;
+            play(message.guild, queueContruct.songs[0]);
+          } catch (err) {
+            console.log(err);
+            queue.delete(message.guild.id);
+            return message.channel.send(err);
+          }
+        } else {
+          serverQueue.songs.push(song);
+          return message.channel.send(
+            `${song.title} has been added to the queue!`
+          );
+        }
+      }
+   return;
+    });
   });
-  
 }
 
 function skip(message, serverQueue) {
@@ -129,10 +139,10 @@ function stop(message, serverQueue) {
     return message.channel.send(
       "You have to be in a voice channel to stop the music!"
     );
-    
+
   if (!serverQueue)
     return message.channel.send("There is no song that I could stop!");
-    
+
   serverQueue.songs = [];
   serverQueue.connection.dispatcher.end();
 }
@@ -151,7 +161,7 @@ function play(guild, song) {
       serverQueue.songs.shift();
       play(guild, serverQueue.songs[0]);
     })
-    .on("error", error => console.error(error));
+    .on("error", (error) => console.error(error));
   dispatcher.setVolumeLogarithmic(serverQueue.volume / 5);
   serverQueue.textChannel.send(`Start playing: **${song.title}**`);
 }
