@@ -33,7 +33,7 @@ client.on("message", async (message) => {
 
   //Checks for Prefix and Executes the relevant command
   if (message.content.startsWith(`${prefix}play`)) {
-    await execute(message, serverQueue);
+     execute(message, serverQueue);
     return;
   } else if (message.content.startsWith(`${prefix}skip`)) {
     skip(message, serverQueue);
@@ -119,8 +119,8 @@ function execute(message, serverQueue) {
           );
         }
       }
-   return;
-    });
+  });
+   
   });
 }
 
