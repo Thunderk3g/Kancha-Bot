@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 const ytdl = require("ytdl-core");
 const client = new Discord.Client();
 var search = require("youtube-search");
-require('dotenv').config();
+// require('dotenv').config();
 const queue = new Map();
 
 client.once("ready", () => {
@@ -18,33 +18,33 @@ client.once("disconnect", () => {
 });
 var opts = {
   maxResults: 3,
-  key: process.env.key,
+  key: process.env.YTS_TOKEN,
 };
 var index = Number;
 //Music Bot Listens to the command//
 
 client.on("message", async (message) => {
   if (message.author.bot) return;
-  if (!message.content.startsWith(process.env.prefix)) return;
+  if (!message.content.startsWith(process.env.PREFIX)) return;
 
   const serverQueue = queue.get(message.guild.id);
 
   //Checks for Prefix and Executes the relevant command
-  if (message.content.startsWith(`${process.env.prefix}play`)) {
+  if (message.content.startsWith(`${process.env.PREFIX}play`)) {
      execute(message, serverQueue);
     return;
-  } else if (message.content.startsWith(`${process.env.prefix}skip`)) {
+  } else if (message.content.startsWith(`${process.env.PREFIX}skip`)) {
     skip(message, serverQueue);
     return;
-  } else if (message.content.startsWith(`${process.env.prefix}stop`)) {
+  } else if (message.content.startsWith(`${process.env.PREFIX}stop`)) {
     stop(message, serverQueue);
     return;
-  } else if (message.content.startsWith(`${process.env.prefix}murtichor`)) {
+  } else if (message.content.startsWith(`${process.env.PREFIX}murtichor`)) {
     message.channel.send("Jay Shakya lai khojeko ho?");
-  } else if (message.content.startsWith(`${process.env.prefix}haddi`)) {
+  } else if (message.content.startsWith(`${process.env.PREFIX}haddi`)) {
     message.channel.send("Prassidha lai khojeko ho?");
   } 
-  else if (message.content.startsWith(`${process.env.prefix}aavash`)) {
+  else if (message.content.startsWith(`${process.env.PREFIX}aavash`)) {
     message.channel.send("Mog guithe ho tyo ek number ko!");
     message.channel.send("Katta haan teslai");
   }
@@ -153,4 +153,4 @@ function play(guild, song) {
   serverQueue.textChannel.send(`Start playing: **${song.title}**`);
 }
 
-client.login(process.env.token);
+client.login(process.env.DJS_TOKEN);
