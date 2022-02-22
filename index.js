@@ -58,9 +58,12 @@ client.on("message", async (message) => {
       Wordle.ShowWordleStats(message);
       return;
   } 
+
+  //Funny Text 
   else if (message.content.startsWith(`${process.env.PREFIX}murtichor`)) {
     message.channel.send("Jay Shakya lai khojeko ho?");
     message.channel.send("Just Kidding Lah , He is ekdam handsome kto 😘😘");
+    message.channel.send("PA lord ", {files: ["https://imgur.com/gallery/UeVSjOm"]});
   } else if (message.content.startsWith(`${process.env.PREFIX}haddi`)) {
     message.channel.send("Prassidha lai khojeko ho?");
     message.channel.send("He busy with girls you single fuck");
@@ -68,6 +71,19 @@ client.on("message", async (message) => {
   else if (message.content.startsWith(`${process.env.PREFIX}aavash`)) {
     message.channel.send("Mog guithe ho tyo ek number ko!");
     message.channel.send("Katta haan teslai");
+  }
+  else if (message.content.startsWith(`${process.env.PREFIX}abhishek`)) {
+    message.channel.send("You mean the guy who says ,Diwakar Throw Nahana , Diwakar Throw Nahana");
+    message.channel.send("Or the guy who says picks engima and gives blackhole to rubick");
+    message.channel.send("Kera Khau ", {files: ["https://imgur.com/a/OQaro3k"]});
+  }
+  else if (message.content.startsWith(`${process.env.PREFIX}errie`)) {
+    message.channel.send("The G.O.A.T Natures Prophet");
+    message.channel.send("I see , I rat , I win", {files: ["https://imgur.com/a/EyuB8Fm"]});
+  }
+  else if (message.content.startsWith(`${process.env.PREFIX}shreejan`)) {
+    message.channel.send("I am good at Dota");
+    message.channel.send("Kera Khau ", {files: ["https://imgur.com/a/P33W1PV"]});
   }
   else if (message.content.startsWith(`${process.env.PREFIX}diwakar`)) {
     message.channel.send("Dai Bhan Diwakar lai");
