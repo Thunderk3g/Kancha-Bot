@@ -45,6 +45,7 @@ client.on("message", async (message) => {
     message.channel.send("Just Kidding Lah , He is ekdam handsome kto 😘😘");
   } else if (message.content.startsWith(`${process.env.PREFIX}haddi`)) {
     message.channel.send("Prassidha lai khojeko ho?");
+    message.channel.send("He busy with girls you single fuck");
   } 
   else if (message.content.startsWith(`${process.env.PREFIX}aavash`)) {
     message.channel.send("Mog guithe ho tyo ek number ko!");
@@ -53,7 +54,7 @@ client.on("message", async (message) => {
   else if (message.content.startsWith(`${process.env.PREFIX}diwakar`)) {
     message.channel.send("Dai Bhan Diwakar lai");
   }
-  else if (message.content.startsWith(`${process.env.PREFIX}diwakardai`)) {
+  else if (message.content.startsWith(`${process.env.PREFIX}dai`)) {
     message.channel.send("He is the son of zeus");
     message.channel.send("Ayera Dhog Mog");
   }
