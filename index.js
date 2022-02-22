@@ -67,11 +67,29 @@ client.on("message", async (message) => {
   } else if (message.content.startsWith(`${process.env.PREFIX}haddi`)) {
     message.channel.send("Prassidha lai khojeko ho?");
     message.channel.send("He busy with girls you single fuck");
+    const voiceChannel = message.member.voice.channel;
+    if (!voiceChannel)
+        return message.reply("MESSAGE IF NOT IN A VOICE CHANNEL")
+    voiceChannel.join()
+    .then(connection => {
+        const dispatcher = connection.play('./mp3/milena.mp3');
+        dispatcher.on("end", end => {voiceChannel.leave()});
+    })
+    .catch(console.error);
   } 
   else if (message.content.startsWith(`${process.env.PREFIX}aavash`)) {
     message.channel.send("Mog guithe ho tyo ek number ko!");
     message.channel.send("Katta haan teslai");
     message.channel.send("Olala",{ files: [{ attachment: './images/chowk_tira.jpg' }] }); 
+    const voiceChannel = message.member.voice.channel;
+    if (!voiceChannel)
+        return message.reply("MESSAGE IF NOT IN A VOICE CHANNEL")
+    voiceChannel.join()
+    .then(connection => {
+        const dispatcher = connection.play('./mp3/chowk_tira.mp3');
+        dispatcher.on("end", end => {voiceChannel.leave()});
+    })
+    .catch(console.error);
 
   }
   else if (message.content.startsWith(`${process.env.PREFIX}abhishek`)) {
@@ -90,6 +108,15 @@ client.on("message", async (message) => {
    else if (message.content.startsWith(`${process.env.PREFIX}aayush`)) {
     message.channel.send("Jai Shambhoooooo");
     message.channel.send("Pro Majnus Player",{ files: [{ attachment: './images/tare_zameen_par.jpg' }] }); 
+    const voiceChannel = message.member.voice.channel;
+    if (!voiceChannel)
+        return message.reply("MESSAGE IF NOT IN A VOICE CHANNEL")
+    voiceChannel.join()
+    .then(connection => {
+        const dispatcher = connection.play('./mp3/tare.mp3');
+        dispatcher.on("end", end => {voiceChannel.leave()});
+    })
+    .catch(console.error);
    }
   else if (message.content.startsWith(`${process.env.PREFIX}diwakar`)) {
     message.channel.send("!dai bhan mog");
