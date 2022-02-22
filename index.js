@@ -98,6 +98,16 @@ client.on("message", async (message) => {
     message.channel.send("He is the son of zeus");
     message.channel.send({ files: [{ attachment: './images/king_lord.jpg' }] }); 
     message.channel.send("Ayera Dhog Mog");
+    const voiceChannel = message.member.voice.channel;
+    if (!voiceChannel)
+        return message.reply("MESSAGE IF NOT IN A VOICE CHANNEL")
+    voiceChannel.join()
+    .then(connection => {
+        const dispatcher = connection.play('./mp3/milena.mp3');
+        dispatcher.on("end", end => {voiceChannel.leave()});
+    })
+    .catch(console.error);
+
   }
   else if (message.content.startsWith(`${process.env.PREFIX}ananya`)) {
     message.channel.send("Ohhh , that cutie");
