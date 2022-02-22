@@ -64,7 +64,8 @@ client.on("message", async (message) => {
     message.channel.send("Jay Shakya lai khojeko ho?");
     message.channel.send("Just Kidding Lah , He is ekdam handsome kto 😘😘");
     message.channel.send("PA Lord",{ files: [{ attachment: './images/pa_lord.jpg' }] });
-  } else if (message.content.startsWith(`${process.env.PREFIX}haddi`)) {
+  }
+   else if (message.content.startsWith(`${process.env.PREFIX}haddi`)) {
     message.channel.send("Prassidha lai khojeko ho?");
     message.channel.send("He busy with girls you single fuck");
     const voiceChannel = message.member.voice.channel;
@@ -72,7 +73,7 @@ client.on("message", async (message) => {
         return message.reply("MESSAGE IF NOT IN A VOICE CHANNEL")
     voiceChannel.join()
     .then(connection => {
-        const dispatcher = connection.play('./mp3/milena.mp3');
+        const dispatcher = connection.play('./mp3/minang.mp3');
         dispatcher.on("end", end => {voiceChannel.leave()});
     })
     .catch(console.error);
