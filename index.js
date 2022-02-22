@@ -90,11 +90,17 @@ client.on("message", async (message) => {
     message.channel.send("Pro Majnus Player",{ files: [{ attachment: './images/tare_zameen_par.jpg' }] }); 
    }
   else if (message.content.startsWith(`${process.env.PREFIX}diwakar`)) {
-    message.channel.send("Dai Bhan Diwakar lai");
+    message.channel.send("!diwakardai bhan mog");
   }
-  else if (message.content.startsWith(`${process.env.PREFIX}dai`)) {
+  else if (message.content.startsWith(`${process.env.PREFIX}diwakardai`)) {
     message.channel.send("He is the son of zeus");
+    message.channel.send({ files: [{ attachment: './images/king_lord.jpg' }] }); 
     message.channel.send("Ayera Dhog Mog");
+  }
+  else if (message.content.startsWith(`${process.env.PREFIX}ananya`)) {
+    message.channel.send("Ohhh , that cutie");
+    message.channel.send("Olala",{ files: [{ attachment: './images/pog_lord.jpg' }] }); 
+
   }
   else {
     message.channel.send("You need to enter a valid command!");
