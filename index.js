@@ -90,7 +90,7 @@ client.on("message", async (message) => {
     message.channel.send("Pro Majnus Player",{ files: [{ attachment: './images/tare_zameen_par.jpg' }] }); 
    }
   else if (message.content.startsWith(`${process.env.PREFIX}diwakar`)) {
-    message.channel.send("!diwakardai bhan mog");
+    message.channel.send("!dai bhan mog");
   }
   else if (message.content.startsWith(`${process.env.PREFIX}diwakardai`)) {
     message.channel.send("He is the son of zeus");
