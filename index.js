@@ -104,8 +104,17 @@ client.on("message", async (message) => {
   }
   else if (message.content.startsWith(`${process.env.PREFIX}abhishek`)) {
     message.channel.send("You mean the guy who says ,Diwakar Throw Nahana , Diwakar Throw Nahana");
-    message.channel.send("Or the guy who says picks engima and gives blackhole to rubick");
+    message.channel.send(" Or The Ultimate Enigma Player ?");
     message.channel.send("Kera Khau",{ files: [{ attachment: './images/enigma_lord.jpg' }] });
+    const voiceChannel = message.member.voice.channel;
+    if (!voiceChannel)
+        return message.reply("MESSAGE IF NOT IN A VOICE CHANNEL")
+    voiceChannel.join()
+    .then(connection => {
+        const dispatcher = connection.play('./mp3/dhala.mp3');
+        dispatcher.on("end", end => {voiceChannel.leave()});
+    })
+    .catch(console.error);
   }
   else if (message.content.startsWith(`${process.env.PREFIX}eerie`)) {
     message.channel.send("The G.O.A.T Natures Prophet");
