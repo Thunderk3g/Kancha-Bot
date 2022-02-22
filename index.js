@@ -92,7 +92,7 @@ client.on("message", async (message) => {
   else if (message.content.startsWith(`${process.env.PREFIX}diwakar`)) {
     message.channel.send("!dai bhan mog");
   }
-  else if (message.content.startsWith(`${process.env.PREFIX}diwakardai`)) {
+  else if (message.content.startsWith(`${process.env.PREFIX}dai`)) {
     message.channel.send("He is the son of zeus");
     message.channel.send({ files: [{ attachment: './images/king_lord.jpg' }] }); 
     message.channel.send("Ayera Dhog Mog");
