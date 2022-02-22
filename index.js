@@ -1,10 +1,8 @@
 const Discord = require("discord.js");
-const { prefix, token, key } = require("./config.json");
 const ytdl = require("ytdl-core");
-
 const client = new Discord.Client();
 var search = require("youtube-search");
-
+require('dotenv').config();
 const queue = new Map();
 
 client.once("ready", () => {
@@ -20,32 +18,37 @@ client.once("disconnect", () => {
 });
 var opts = {
   maxResults: 3,
-  key: key,
+  key: process.env.key,
 };
 var index = Number;
 //Music Bot Listens to the command//
 
 client.on("message", async (message) => {
   if (message.author.bot) return;
-  if (!message.content.startsWith(prefix)) return;
+  if (!message.content.startsWith(process.env.prefix)) return;
 
   const serverQueue = queue.get(message.guild.id);
 
   //Checks for Prefix and Executes the relevant command
-  if (message.content.startsWith(`${prefix}play`)) {
+  if (message.content.startsWith(`${process.env.prefix}play`)) {
      execute(message, serverQueue);
     return;
-  } else if (message.content.startsWith(`${prefix}skip`)) {
+  } else if (message.content.startsWith(`${process.env.prefix}skip`)) {
     skip(message, serverQueue);
     return;
-  } else if (message.content.startsWith(`${prefix}stop`)) {
+  } else if (message.content.startsWith(`${process.env.prefix}stop`)) {
     stop(message, serverQueue);
     return;
-  } else if (message.content.startsWith(`${prefix}murtichor`)) {
+  } else if (message.content.startsWith(`${process.env.prefix}murtichor`)) {
     message.channel.send("Jay Shakya lai khojeko ho?");
-  } else if (message.content.startsWith(`${prefix}haddi`)) {
+  } else if (message.content.startsWith(`${process.env.prefix}haddi`)) {
     message.channel.send("Prassidha lai khojeko ho?");
-  } else {
+  } 
+  else if (message.content.startsWith(`${process.env.prefix}aavash`)) {
+    message.channel.send("Mog guithe ho tyo ek number ko!");
+    message.channel.send("Katta haan teslai");
+  }
+  else {
     message.channel.send("You need to enter a valid command!");
   }
 });
@@ -71,24 +74,12 @@ function execute(message, serverQueue) {
 
   search(args, opts, async function (err, results) {
     if (err) return console.log(err);
-
-    message.channel.send("Choose the song you want with ! on the start :");
-    for (var i = 0; i < results.length; i++) {
-      message.channel.send(i + 1 + ") " + results[i].title);
-      console.log(results[i].title);
-    }
-    client.on("message", async (message) => {
-      if (message.author.bot) return;
-      else {
-        var parsed = message.content.toString()
-        console.log(parsed);
-        var id = results[parsed-1].link;
+        var id = results[0].link;
         const songInfo = await ytdl.getInfo(id);
         const song = {
           title: songInfo.videoDetails.title,
           url: songInfo.videoDetails.video_url,
         };
-
         if (!serverQueue) {
           const queueContruct = {
             textChannel: message.channel,
@@ -118,12 +109,8 @@ function execute(message, serverQueue) {
             `${song.title} has been added to the queue!`
           );
         }
-      }
-  });
-   
   });
 }
-
 function skip(message, serverQueue) {
   if (!message.member.voice.channel)
     return message.channel.send(
@@ -166,4 +153,4 @@ function play(guild, song) {
   serverQueue.textChannel.send(`Start playing: **${song.title}**`);
 }
 
-client.login(token);
+client.login(process.env.token);
