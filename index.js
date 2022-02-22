@@ -99,6 +99,7 @@ client.on("message", async (message) => {
   }
   else if (message.content.startsWith(`${process.env.PREFIX}ananya`)) {
     message.channel.send("Ohhh , that cutie");
+    message.channel.send("She is so pretty <3");
     message.channel.send("Olala",{ files: [{ attachment: './images/pog_lord.jpg' }] }); 
 
   }
