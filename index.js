@@ -6,7 +6,7 @@ var search = require("youtube-search");
 const Wordle = require("./wordle.js");
 
 //Uncomment the next line to run locally and add a .env file with preffered PREFIX , discord.js token as DJS_TOKEN and Youtube Data API token as YTS_TOKEN
-require('dotenv').config();
+// require('dotenv').config();
 const queue = new Map();
 
 client.once("ready", () => {
