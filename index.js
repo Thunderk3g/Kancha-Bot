@@ -79,7 +79,7 @@ client.on("message", async (message) => {
   }
   else if (message.content.startsWith(`${process.env.PREFIX}errie`)) {
     message.channel.send("The G.O.A.T Natures Prophet");
-    message.channel.send("I see , I rat , I win",{ files: [{ attachment: './images/rat_lord.jpg' }] });
+    message.channel.send("I see , I rat , I win",{ files: [{ attachment: './images/rat_lord.png' }] });
   }
   else if (message.content.startsWith(`${process.env.PREFIX}shreejan`)) {
     message.channel.send("I am good at Dota");
