@@ -42,12 +42,20 @@ client.on("message", async (message) => {
     return;
   } else if (message.content.startsWith(`${process.env.PREFIX}murtichor`)) {
     message.channel.send("Jay Shakya lai khojeko ho?");
+    message.channel.send("Just Kidding Lah , He is ekdam handsome kto 😘😘");
   } else if (message.content.startsWith(`${process.env.PREFIX}haddi`)) {
     message.channel.send("Prassidha lai khojeko ho?");
   } 
   else if (message.content.startsWith(`${process.env.PREFIX}aavash`)) {
     message.channel.send("Mog guithe ho tyo ek number ko!");
     message.channel.send("Katta haan teslai");
+  }
+  else if (message.content.startsWith(`${process.env.PREFIX}diwakar`)) {
+    message.channel.send("Dai Bhan Diwakar lai");
+  }
+  else if (message.content.startsWith(`${process.env.PREFIX}diwakardai`)) {
+    message.channel.send("He is the son of zeus");
+    message.channel.send("Ayera Dhog Mog");
   }
   else {
     message.channel.send("You need to enter a valid command!");
