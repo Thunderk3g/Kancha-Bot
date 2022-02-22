@@ -2,6 +2,7 @@ const Discord = require("discord.js");
 const ytdl = require("ytdl-core");
 const client = new Discord.Client();
 var search = require("youtube-search");
+//Uncomment the next line to run locally and add a .env file with preffered PREFIX , discord.js token as DJS_TOKEN and Youtube Data API token as YTS_TOKEN
 // require('dotenv').config();
 const queue = new Map();
 
