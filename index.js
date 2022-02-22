@@ -77,7 +77,7 @@ client.on("message", async (message) => {
     message.channel.send("Or the guy who says picks engima and gives blackhole to rubick");
     message.channel.send("Kera Khau",{ files: [{ attachment: './images/enigma_lord.jpg' }] });
   }
-  else if (message.content.startsWith(`${process.env.PREFIX}errie`)) {
+  else if (message.content.startsWith(`${process.env.PREFIX}eerie`)) {
     message.channel.send("The G.O.A.T Natures Prophet");
     message.channel.send("I see , I rat , I win",{ files: [{ attachment: './images/rat_lord.png' }] });
   }
