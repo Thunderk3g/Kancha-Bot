@@ -83,8 +83,12 @@ client.on("message", async (message) => {
   }
   else if (message.content.startsWith(`${process.env.PREFIX}shreejan`)) {
     message.channel.send("I am good at Dota");
-    message.channel.send(" Le Sky Players",{ files: [{ attachment: './images/sky_lord.jpg' }] });  }
-
+    message.channel.send(" Le Sky Players",{ files: [{ attachment: './images/sky_lord.jpg' }] }); 
+   }
+   else if (message.content.startsWith(`${process.env.PREFIX}aayush`)) {
+    message.channel.send("Jai Shambhoooooo");
+    message.channel.send("Pro Majnus Player",{ files: [{ attachment: './images/tare_zameen_par.jpg' }] }); 
+   }
   else if (message.content.startsWith(`${process.env.PREFIX}diwakar`)) {
     message.channel.send("Dai Bhan Diwakar lai");
   }
