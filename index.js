@@ -1,9 +1,12 @@
-const Discord = require("discord.js");
+
 const ytdl = require("ytdl-core");
-const client = new Discord.Client();
+const { Client, Intents} = require('discord.js');
+const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
 var search = require("youtube-search");
+const Wordle = require("./wordle.js");
+
 //Uncomment the next line to run locally and add a .env file with preffered PREFIX , discord.js token as DJS_TOKEN and Youtube Data API token as YTS_TOKEN
-// require('dotenv').config();
+require('dotenv').config();
 const queue = new Map();
 
 client.once("ready", () => {
@@ -27,6 +30,9 @@ var index = Number;
 client.on("message", async (message) => {
   if (message.author.bot) return;
   if (!message.content.startsWith(process.env.PREFIX)) return;
+  permision = message.channel.permissionsFor(client.user);
+  permision = permision.toArray();
+  if(message.author.username === client.user.username) {return;}
 
   const serverQueue = queue.get(message.guild.id);
 
@@ -40,7 +46,19 @@ client.on("message", async (message) => {
   } else if (message.content.startsWith(`${process.env.PREFIX}stop`)) {
     stop(message, serverQueue);
     return;
-  } else if (message.content.startsWith(`${process.env.PREFIX}murtichor`)) {
+  }
+    //For Wordle
+  else if (message.content.startsWith(`${process.env.PREFIX}wordle`)) {
+      Wordle.LoadNewWordle(message);
+      return;
+  } else if (message.content.startsWith(`${process.env.PREFIX}guess`)) {
+      Wordle.PlayWordle(message);   
+       return;
+  } else if (message.content.startsWith(`${process.env.PREFIX}wordlestats`)) {
+      Wordle.ShowWordleStats(message);
+      return;
+  } 
+  else if (message.content.startsWith(`${process.env.PREFIX}murtichor`)) {
     message.channel.send("Jay Shakya lai khojeko ho?");
     message.channel.send("Just Kidding Lah , He is ekdam handsome kto 😘😘");
   } else if (message.content.startsWith(`${process.env.PREFIX}haddi`)) {
