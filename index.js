@@ -60,8 +60,8 @@ client.on("message", async (message) => {
   } 
 
   //Funny Text 
-  else if (message.content.startsWith(`${process.env.PREFIX}murtichor`)) {
-    message.channel.send("Jay Shakya lai khojeko ho?");
+  else if (message.content.startsWith(`${process.env.PREFIX}jay`)) {
+    message.channel.send("Murtichor lai khojeko ho?");
     message.channel.send("Just Kidding Lah , He is ekdam handsome kto 😘😘");
     message.channel.send("PA Lord",{ files: [{ attachment: './images/pa_lord.jpg' }] });
     const voiceChannel = message.member.voice.channel;
@@ -74,8 +74,8 @@ client.on("message", async (message) => {
     })
     .catch(console.error);
   }
-   else if (message.content.startsWith(`${process.env.PREFIX}haddi`)) {
-    message.channel.send("Prassidha lai khojeko ho?");
+   else if (message.content.startsWith(`${process.env.PREFIX}prasiddha`)) {
+    message.channel.send("Prassidha , the hancy boy ,lai khojeko ho?");
     message.channel.send("He busy with girls you single fuck");
     const voiceChannel = message.member.voice.channel;
     if (!voiceChannel)
