@@ -64,6 +64,15 @@ client.on("message", async (message) => {
     message.channel.send("Jay Shakya lai khojeko ho?");
     message.channel.send("Just Kidding Lah , He is ekdam handsome kto 😘😘");
     message.channel.send("PA Lord",{ files: [{ attachment: './images/pa_lord.jpg' }] });
+    const voiceChannel = message.member.voice.channel;
+    if (!voiceChannel)
+        return message.reply("MESSAGE IF NOT IN A VOICE CHANNEL")
+    voiceChannel.join()
+    .then(connection => {
+        const dispatcher = connection.play('./mp3/sexy.mp3');
+        dispatcher.on("end", end => {voiceChannel.leave()});
+    })
+    .catch(console.error);
   }
    else if (message.content.startsWith(`${process.env.PREFIX}haddi`)) {
     message.channel.send("Prassidha lai khojeko ho?");
