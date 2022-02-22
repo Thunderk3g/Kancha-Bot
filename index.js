@@ -63,7 +63,7 @@ client.on("message", async (message) => {
   else if (message.content.startsWith(`${process.env.PREFIX}murtichor`)) {
     message.channel.send("Jay Shakya lai khojeko ho?");
     message.channel.send("Just Kidding Lah , He is ekdam handsome kto 😘😘");
-    message.channel.send("PA lord ", {files: ["https://imgur.com/gallery/UeVSjOm"]});
+    message.channel.send("PA Lord",{ files: [{ attachment: './images/pa_lord.jpg' }] });
   } else if (message.content.startsWith(`${process.env.PREFIX}haddi`)) {
     message.channel.send("Prassidha lai khojeko ho?");
     message.channel.send("He busy with girls you single fuck");
@@ -75,16 +75,16 @@ client.on("message", async (message) => {
   else if (message.content.startsWith(`${process.env.PREFIX}abhishek`)) {
     message.channel.send("You mean the guy who says ,Diwakar Throw Nahana , Diwakar Throw Nahana");
     message.channel.send("Or the guy who says picks engima and gives blackhole to rubick");
-    message.channel.send("Kera Khau ", {files: ["https://imgur.com/a/OQaro3k"]});
+    message.channel.send("Kera Khau",{ files: [{ attachment: './images/enigma_lord.jpg' }] });
   }
   else if (message.content.startsWith(`${process.env.PREFIX}errie`)) {
     message.channel.send("The G.O.A.T Natures Prophet");
-    message.channel.send("I see , I rat , I win", {files: ["https://imgur.com/a/EyuB8Fm"]});
+    message.channel.send("I see , I rat , I win",{ files: [{ attachment: './images/rat_lord.jpg' }] });
   }
   else if (message.content.startsWith(`${process.env.PREFIX}shreejan`)) {
     message.channel.send("I am good at Dota");
-    message.channel.send("Kera Khau ", {files: ["https://imgur.com/a/P33W1PV"]});
-  }
+    message.channel.send(" Le Sky Players",{ files: [{ attachment: './images/sky_lord.jpg' }] });  }
+
   else if (message.content.startsWith(`${process.env.PREFIX}diwakar`)) {
     message.channel.send("Dai Bhan Diwakar lai");
   }
