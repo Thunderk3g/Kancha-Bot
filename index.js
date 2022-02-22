@@ -71,6 +71,8 @@ client.on("message", async (message) => {
   else if (message.content.startsWith(`${process.env.PREFIX}aavash`)) {
     message.channel.send("Mog guithe ho tyo ek number ko!");
     message.channel.send("Katta haan teslai");
+    message.channel.send("Olala",{ files: [{ attachment: './images/chowk_tira.jpg' }] }); 
+
   }
   else if (message.content.startsWith(`${process.env.PREFIX}abhishek`)) {
     message.channel.send("You mean the guy who says ,Diwakar Throw Nahana , Diwakar Throw Nahana");
