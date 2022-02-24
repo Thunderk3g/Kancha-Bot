@@ -32,6 +32,6 @@ nodemon start
 |`!play [song-name]`| Plays music from Youtube described by song-name.|
 |`!stop `|Stops the music and disconnects the bot|
 |`!skip`| Skips the current song and goes to the next song|
-|`!wordle [word]`|Starts a game of wordle|
+|`!wordle`|Starts a game of wordle|
 |`!guess [word]`|Guess the word for the wordle|
 |`!wordlestats`|Shows the stats for the user|
