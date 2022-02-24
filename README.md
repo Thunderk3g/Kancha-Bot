@@ -26,7 +26,3 @@ npm install
 nodemon start
 ```
 
-# References to replicate.
-https://github.com/MaxGfeller/youtube-search
-
-https://gabrieltanner.org/blog/dicord-music-bot
