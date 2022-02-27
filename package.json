@@ -22,7 +22,10 @@
   "homepage": "https://github.com/Thunderk3g/Kancha-Bot#readme",
   "dependencies": {
     "@discordjs/opus": "^0.5.3",
+    "@discordjs/rest": "^0.3.0",
     "canvas": "^2.9.0",
+    "discord-api-types": "^0.27.3",
+    "discord-player": "^5.2.2",
     "discord.js": "^12.5.3",
     "discordjs-button-embed-pagination": "^4.0.2",
     "dotenv": "^16.0.0",

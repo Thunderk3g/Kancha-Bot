@@ -91,7 +91,7 @@ function skip(message, serverQueue) {
     serverQueue.connection.dispatcher.end();
   }
 
-   function play (guild, song) {
+  async function play (guild, song) {
     const serverQueue = queue.get(guild.id);
     if (!song) {
       serverQueue.voiceChannel.leave();
@@ -99,8 +99,8 @@ function skip(message, serverQueue) {
       return;
     }
   
-    const dispatcher = serverQueue.connection
-      .play(ytdl(song.url))
+    const dispatcher = await serverQueue.connection
+      .play(ytdl(song.url,{ highWaterMark: 1<<25 ,quality: 'highestaudio' }))
       .on("finish", () => {
         serverQueue.songs.shift();
         play(guild, serverQueue.songs[0]);
